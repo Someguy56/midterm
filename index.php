@@ -10,6 +10,8 @@ require_once('vendor/autoload.php');
 //Create an instance of the Base class
 $f3 = Base::instance();
 
+$f3->set("checks", ['This midterm is easy', 'I like midterms', 'Today is Monday']);
+
 //define a default route
 $f3->route('GET /', function ()
 {
@@ -18,7 +20,8 @@ $f3->route('GET /', function ()
 });
 
 $f3->route('GET /survey', function () {
-    echo 'you made it';
+    $view = new Template();
+    echo $view->render('views/survey.html');
 });
 
 //Run fat-free
