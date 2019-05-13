@@ -25,18 +25,22 @@ $f3->route('GET|POST /survey', function ($f3)
     if(!empty($_POST))
     {
         $name = $_POST['name'];
-        $checks = $_POST['checks'];
+        $choices = $_POST['choices'];
+
+        $f3->set('name', $name);
+        $f3->set('choices', $choices);
+
         if(empty($name))
         {
             $f3->set("errors['name']", 'Please enter a name');
         }
-        if(empty($checks))
+        if(empty($choices))
         {
-            $f3->set("errors['checks']", 'Please pick one option');
+            $f3->set("errors['choices']", 'Please pick one option');
         }
 
         $_SESSION['name'] = $name;
-        $_SESSION['checks'] = $checks;
+        $_SESSION['choices'] = $choices;
         if(empty($f3->get("errors")))
         {
             $f3->reroute('/summary');

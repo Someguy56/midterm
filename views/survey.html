@@ -8,11 +8,13 @@
 
 <h1>Midterm Survey</h1>
 <form method="post" action="#">
-    <label>Name: <input type="text" name="name"></label>
+    <label>Name: <input type="text" name="name" value="{{@name}}"></label>
 
     <p>Check all that apply: </p>
     <repeat group="{{@checks}}" value="{{@value}}">
-        <label><input type="checkbox" name="checks[]" value="{{@value}}">{{@value}}</label><br>
+        <label><input type="checkbox" name="choices[]" value="{{@value}}"
+            <check if="{{!empty(@choices) && in_array(@value, @choices) }}">checked</check>>
+        {{@value}}</label><br>
     </repeat>
 
     <button type="submit">Submit</button>
