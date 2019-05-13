@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 //TUrn on error reporting
 ini_set('display_errors', true);
 error_reporting(E_ALL);
@@ -19,9 +20,22 @@ $f3->route('GET /', function ()
     echo '<a href="survey">Take my Midterm Survey</a>';
 });
 
-$f3->route('GET /survey', function () {
+$f3->route('GET|POST /survey', function ($f3)
+{
+    if(!empty($_POST))
+    {
+        $_SESSION['name'] = $_POST['name'];
+        $_SESSION['checks'] = $_POST['checks'];
+        $f3->reroute('/summary');
+    }
+
     $view = new Template();
     echo $view->render('views/survey.html');
+});
+
+$f3->route('GET|POST /summary', function () {
+    $view = new Template();
+    echo $view->render('views/summary.html');
 });
 
 //Run fat-free
