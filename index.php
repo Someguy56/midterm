@@ -24,9 +24,23 @@ $f3->route('GET|POST /survey', function ($f3)
 {
     if(!empty($_POST))
     {
-        $_SESSION['name'] = $_POST['name'];
-        $_SESSION['checks'] = $_POST['checks'];
-        $f3->reroute('/summary');
+        $name = $_POST['name'];
+        $checks = $_POST['checks'];
+        if(empty($name))
+        {
+            $f3->set("errors['name']", 'Please enter a name');
+        }
+        if(empty($checks))
+        {
+            $f3->set("errors['checks']", 'Please pick one option');
+        }
+
+        $_SESSION['name'] = $name;
+        $_SESSION['checks'] = $checks;
+        if(empty($f3->get("errors")))
+        {
+            $f3->reroute('/summary');
+        }
     }
 
     $view = new Template();

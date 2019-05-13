@@ -18,5 +18,9 @@
     <button type="submit">Submit</button>
 </form>
 
+<repeat group="{{@errors}}" key="{{@type}}" value="{{@message}}">
+    <p>{{@message}}</p>
+</repeat>
+
 </body>
 </html>

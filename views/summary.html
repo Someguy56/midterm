@@ -7,7 +7,9 @@
 <body>
 
 <h1>Midterm Survey</h1>
-<p>Your name: {{$_SESSION['name']}}</p>
+<h3>Thank you for taking the survey, {{$_SESSION['name']}}</h3>
+
+<h4>Your answers: </h4>
 <p>Your choices: {{ implode(', ', $_SESSION['checks'])}}</p>
 
 </body>
