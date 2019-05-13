@@ -1,0 +1,12 @@
+{
+  "name": "mlee/328/midterm",
+  "authors": [
+    {
+      "name": "Max Lee",
+      "email": "mlee77@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
